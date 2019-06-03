@@ -3,8 +3,13 @@ import {
     Text,
     View,
     StyleSheet,
+    StatusBar,
 } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import {
+    createStackNavigator,
+    createBottomTabNavigator,
+    createAppContainer
+} from 'react-navigation';
 
 import TitleComponent from '../components/Home/Title';
 
@@ -35,6 +40,7 @@ class PrivateTab extends Component {
     render() {
         return (
             <View style={tabStyles.container}>
+                <StatusBar hidden/>
                 <Text>Private</Text>
             </View>
         )
@@ -63,23 +69,23 @@ const TabNavigator = createBottomTabNavigator({
     Public: { screen: PublicStack }
 });
 
-const TabNavigatorComponent = createAppContainer(TabNavigator);
+export default createAppContainer(TabNavigator);
 
-export default class HomeScreen extends Component {
-    constructor(props) {
-        super(props);
-        this.props.navigation.headerLeft = null;
-    }
-    render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.title}>
-                    <TitleComponent />
-                </View>
-                <View style={styles.content}>
-                    <TabNavigatorComponent/>
-                </View>
-            </View>
-        );
-    }
-}
+// export default class HomeScreen extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.props.navigation.headerLeft = null;
+//     }
+//     render() {
+//         return (
+//             <View style={styles.container}>
+//                 <View style={styles.title}>
+//                     <TitleComponent />
+//                 </View>
+//                 <View style={styles.content}>
+//                     <TabNavigatorComponent/>
+//                 </View>
+//             </View>
+//         );
+//     }
+// }

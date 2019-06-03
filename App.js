@@ -11,7 +11,7 @@ const MainNavigation = createStackNavigator({
   Signup: { screen: RegisterScreen },
   Home: { screen: HomeScreen },
 }, {
-  initialRouteName: 'Login',
+  initialRouteName: 'Home',
   headerMode: 'none',
   navigationOptions: {
     headerLeft: null,
