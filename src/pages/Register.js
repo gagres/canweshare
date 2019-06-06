@@ -3,7 +3,8 @@ import {
     View,
     Button,
     TextInput,
-    StyleSheet
+    StyleSheet,
+    StatusBar
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -27,6 +28,7 @@ export default class RegisterScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar hidden/>
                 <TextInput placeholder='Nome do usuário'
                     style={styles.formGroup}/>
                 <TextInput placeholder='Senha do usuário'
@@ -41,7 +43,7 @@ export default class RegisterScreen extends Component {
                     style={[styles.formGroup, { marginTop: 30 }]}/>
                 <View style={styles.buttonContainer}>
                     <Button title="Cadastrar"
-                        onPress={(e) => console.log(e.target.toString())}/>
+                        onPress={() => this.props.navigation.navigate('Login')}/>
                 </View>
             </View>
         )

@@ -5,7 +5,8 @@ import {
     Text,
     TouchableOpacity,
     TextInput,
-    StyleSheet
+    StyleSheet,
+    StatusBar
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -38,6 +39,7 @@ export default class RegisterScreen extends Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
+                <StatusBar hidden/>
                 <TextInput placeholder='Nome do usuário'
                     style={styles.formGroup}/>
                 <TextInput placeholder='Senha do usuário'
@@ -47,7 +49,7 @@ export default class RegisterScreen extends Component {
                     style={[styles.formGroup, { marginTop: 30 }]}/>
                 <View style={styles.buttonContainer}>
                     <Button title="Entrar"
-                        onPress={() => navigate('Home')}/>
+                        onPress={() => navigate('Private')}/>
                 </View>
                 <View style={styles.signup}>
                     <TouchableOpacity
