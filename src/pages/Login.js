@@ -6,8 +6,12 @@ import {
     TouchableOpacity,
     TextInput,
     StyleSheet,
-    StatusBar
+    StatusBar,
+    Image,
+    Alert,
 } from 'react-native';
+
+import { getUser } from '../models/User';
 
 const styles = StyleSheet.create({
     container: {
@@ -15,6 +19,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'stretch',
         padding: 50,
+    },
+    imgContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    img: {
+        width: 250,
+        height: 165,
+
     },
     formGroup: {
         borderBottomWidth: 2,
@@ -35,21 +49,47 @@ const styles = StyleSheet.create({
 })
 
 export default class RegisterScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: 'Gagres',
+            password: 'Gagres',
+        }
+    }
+    login = () => {
+        const { name, password } = this.state;
+        getUser(name.toLocaleLowerCase(), password.toLocaleLowerCase())
+            .then((isUserValid) => {
+                if (isUserValid === 'valid') {
+                    this.props.navigation.navigate('Private')
+                } else {
+                    Alert.alert('Informações inválidas', 'Usuário ou senha inválidos');
+                }
+            })
+    }
     render() {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <StatusBar hidden/>
+                <View style={styles.imgContainer}>
+                    <Image style={styles.img} 
+                        source={require('../../assets/logo.png')}></Image>
+                </View>
                 <TextInput placeholder='Nome do usuário'
-                    style={styles.formGroup}/>
+                    style={styles.formGroup}
+                    onChangeText={(e) => this.setState({ name: e })}
+                    value={this.state.name}/>
                 <TextInput placeholder='Senha do usuário'
                     secureTextEntry={true}
                     textContentType='password'
                     autoCompleteType='password'
-                    style={[styles.formGroup, { marginTop: 30 }]}/>
+                    style={[styles.formGroup, { marginTop: 30 }]}
+                    onChangeText={(e) => this.setState({ password: e })}
+                    value={this.state.password}/>
                 <View style={styles.buttonContainer}>
                     <Button title="Entrar"
-                        onPress={() => navigate('Private')}/>
+                        onPress={this.login}/>
                 </View>
                 <View style={styles.signup}>
                     <TouchableOpacity

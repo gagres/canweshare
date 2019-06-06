@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "CanWeShare",
+    "name": "Can We Share?",
     "slug": "CanWeShare",
     "privacy": "public",
     "sdkVersion": "32.0.0",
@@ -24,6 +24,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.valerinhadev.canweshare"
     }
   }
 }
